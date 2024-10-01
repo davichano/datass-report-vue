@@ -1,0 +1,36 @@
+{
+  "name": "datass-vue",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint:fix": "eslint --fix ./src",
+    "format": "prettier --write \"src/**/*.{js,vue,css,scss,html}\"",
+    "prepare": "husky",
+    "create-hook": "husky add .husky/pre-commit \"npm test\""
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@vue/eslint-config-airbnb": "^8.0.0",
+    "vue": "^3.4.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run format",
+      "npm run lint:fix"
+    ]
+  }
+}
