@@ -83,7 +83,8 @@
   <section class="flex flex-col w-full justify-center mx-auto py-[100px] bg-blue-100">
     <!-- Contenedor del título y subtítulo -->
     <div class="w-full text-center mb-16">
-      <h2 class="text-3xl font-bold mb-1 uppercase">Porcentaje de <span class="text-blue-900">acceso a servicios de agua</span> por provincia</h2>
+      <h2 class="text-3xl font-bold mb-1 uppercase">Porcentaje de <span
+        class="text-blue-900">acceso a servicios de agua</span> por provincia</h2>
       <h3 class="text-2xl font-medium">Monitoreo del acceso a agua potable en las provincias de Cajamarca</h3>
     </div>
 
@@ -112,7 +113,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="province in provincesDataWater" :key="province.name" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr v-for="province in provincesDataWater" :key="province.name"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td class="px-4 py-3 text-center">{{ province.name }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population) }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population_with_water) }}</td>
@@ -127,7 +129,8 @@
   <section class="flex flex-col w-full justify-center mx-auto py-[100px] bg-white">
     <!-- Contenedor del título y subtítulo -->
     <div class="w-full text-center mb-16">
-      <h2 class="text-3xl font-bold mb-1 uppercase">Porcentaje de <span class="text-blue-900">Acceso a Unidades Básicas de Saneamiento</span> por Provincia</h2>
+      <h2 class="text-3xl font-bold mb-1 uppercase">Porcentaje de <span class="text-blue-900">Acceso a Unidades Básicas de Saneamiento</span>
+        por Provincia</h2>
       <h3 class="text-2xl font-medium">Monitoreo del acceso a saneamiento en las provincias de Cajamarca</h3>
     </div>
 
@@ -173,7 +176,7 @@
 </template>
 
 <script>
-import { useProvinceStore } from '@/stores/provinceStore.js'
+import useProvinceStore from '@/stores/provinceStore'
 import welcomeImage from '@/assets/images/home/welcome.svg'
 import MapCajamarcaWater from '@/components/maps/MapCajamarcaWater.vue'
 import { computed, onMounted, ref } from 'vue'

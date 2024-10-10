@@ -1,14 +1,14 @@
-//src/stores/provinceStore.js
+// src/stores/provinceStore.js
 import { defineStore } from 'pinia'
 import axiosInstance from '@/axios.js'
 
-export const useProvinceStore = defineStore('provinceStore', {
+const useProvinceStore = defineStore('provinceStore', {
   state: () => ({
     provincesDataWater: [],
     provincesDataUBS: [],
     apiUrl: 'locations/provinces/',
     loading: false,
-    error: null
+    error: null,
   }),
   actions: {
     async fetchProvincesData() {
@@ -20,10 +20,11 @@ export const useProvinceStore = defineStore('provinceStore', {
         this.provincesDataUBS = response.data.ubs_access
       } catch (error) {
         this.error = 'Error al obtener los datos de las provincias'
-        console.log(error)
       } finally {
         this.loading = false
       }
-    }
-  }
+    },
+  },
 })
+
+export default useProvinceStore
