@@ -4,9 +4,10 @@
 
 <script>
 import * as d3 from 'd3'
-import { geoPath, geoMercator } from 'd3-geo'
-import { onMounted, ref, watch, onBeforeUnmount } from 'vue'
-import { normalizeString, getCoverageColor } from '@/utils/utils.js'
+import { geoMercator, geoPath } from 'd3-geo'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { getCoverageColor, normalizeString } from '@/utils/utils.js'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'MapCajamarcaWater',
@@ -19,6 +20,7 @@ export default {
   setup(props) {
     const mapContainer = ref(null)
     let svg = null
+    const router = useRouter()
 
     const renderMap = () => {
       const width = mapContainer.value.clientWidth
@@ -59,6 +61,10 @@ export default {
           .attr('stroke', 'black')
           .attr('stroke-width', 1)
           .style('cursor', 'pointer')
+          .on('click', function(event, d) {
+            const provinceName = d.properties.NOMBPROV
+            router.push({ name: 'provinceReport', params: { provinceName } })  // Navegar a la ruta
+          })
           .on('mouseover', function(event, d) {
             d3.select(this)
               .attr('stroke-width', 3)

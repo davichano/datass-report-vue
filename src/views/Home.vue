@@ -71,7 +71,7 @@
 
         <div
           class="p-6 bg-blue-100 rounded-lg shadow-md text-center flex-1 min-w-[250px] max-w-[300px] flex flex-col border-l-4 border-l-blue-900">
-          <h2 class="font-bold min-h-[4rem]">Número de viviendas con conexión</h2>
+          <h2 class="font-bold min-h-[4rem]">Número de viviendas con conexión a agua</h2>
           <p class="text-3xl mt-auto font-light">{{ formatNumber(resumeData.total_houses_with_connection) }}</p>
         </div>
       </div>
@@ -114,7 +114,8 @@
             </thead>
             <tbody>
             <tr v-for="province in provincesDataWater" :key="province.name"
-                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                @click="goToProvinceReport(province.name)"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer">
               <td class="px-4 py-3 text-center">{{ province.name }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population) }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population_with_water) }}</td>
@@ -160,7 +161,8 @@
             </thead>
             <tbody>
             <tr v-for="province in provincesDataUBS" :key="province.name"
-                class="bg-blue-50 border-b dark:bg-gray-800 dark:border-gray-700">
+                @click="goToProvinceReport(province.name)"
+                class="bg-blue-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer">
               <td class="px-4 py-3 text-center">{{ province.name }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population) }}</td>
               <td class="px-4 py-3 text-center">{{ formatNumber(province.total_population_with_ubs) }}</td>
@@ -183,6 +185,7 @@ import { computed, onMounted, ref } from 'vue'
 import axiosInstance from '@/axios.js'
 import { formatNumber } from '@/utils/utils.js'
 import MapCajamarcaUBS from '@/components/maps/MapCajamarcaUbs.vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Home',
@@ -203,6 +206,11 @@ export default {
       }
     }
 
+    const router = useRouter()
+    const goToProvinceReport = (provinceName) => {
+      router.push({ name: 'provinceReport', params: { provinceName } })
+    }
+
     onMounted(() => {
       provinceStore.fetchProvincesData()
       fetchHomeResume()
@@ -216,7 +224,8 @@ export default {
       provincesDataUBS,
       welcomeImage,
       resumeData,
-      formatNumber
+      formatNumber,
+      goToProvinceReport
     }
   }
 }
