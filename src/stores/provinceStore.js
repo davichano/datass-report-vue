@@ -9,6 +9,8 @@ const useProvinceStore = defineStore('provinceStore', {
     apiUrl: 'locations/provinces/',
     loading: false,
     error: null,
+    provinces: [],
+    districts: [],
   }),
   actions: {
     async fetchProvincesData() {
@@ -22,6 +24,19 @@ const useProvinceStore = defineStore('provinceStore', {
         this.error = 'Error al obtener los datos de las provincias'
       } finally {
         this.loading = false
+      }
+    },
+    async initLists() {
+      try {
+        const response = await axiosInstance.get('locations/provinces/', {
+          params: {
+            option: 'list-p-d',
+          },
+        })
+        this.provinces = response.data.provinces
+        this.districts = response.data.districts
+      } catch (e) {
+        this.error = 'Error al obtener las listas'
       }
     },
   },

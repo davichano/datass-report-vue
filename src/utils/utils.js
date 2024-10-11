@@ -24,5 +24,34 @@ export const getCoverageColor = (percentage) => {
 
 export const formatNumber = (number, separator = ',') => {
   if (typeof number !== 'number') return number
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator)
+
+  if (Number.isInteger(number)) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator)
+  }
+
+  const [integerPart, decimalPart] = number.toFixed(2).split('.')
+
+  return `${integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, separator)}.${
+    decimalPart
+  }`
+}
+
+export const haversine = (lat1, lon1, lat2, lon2) => {
+  const R = 6371e3
+  const toRadians = (degrees) => degrees * (Math.PI / 180)
+
+  const radLat1 = toRadians(lat1)
+  const radLat2 = toRadians(lat2)
+  const deltaLat = toRadians(lat2 - lat1)
+  const deltaLon = toRadians(lon2 - lon1)
+
+  const a =
+    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+    Math.cos(radLat1) *
+      Math.cos(radLat2) *
+      Math.sin(deltaLon / 2) *
+      Math.sin(deltaLon / 2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+  return R * c
 }

@@ -19,7 +19,19 @@
         <!-- Menu for larger screens -->
         <ul class="hidden md:flex space-x-4">
           <li>
-            <router-link to="/" class="hover:text-gray-400">Home</router-link>
+            <router-link to="/" class="hover:text-gray-400">Inicio</router-link>
+          </li>
+          <li>
+            <router-link to="/ubigeo" class="hover:text-gray-400">Ubigeo 99</router-link>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-400">Sistemas</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-400">Prestadores</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-400">Inconsistencias</a>
           </li>
         </ul>
 
@@ -34,20 +46,29 @@
         <div v-if="mobileMenuOpen" class="absolute top-16 right-0 bg-gray-800 w-full p-6 md:hidden">
           <ul class="flex flex-col space-y-4">
             <li>
-              <router-link @click="toggleMenu" to="/" class="hover:text-gray-400">Home</router-link>
+              <router-link @click="toggleMenu" to="/" class="hover:text-gray-400">Inicio</router-link>
+            </li>
+            <li>
+              <router-link @click="toggleMenu" to="/ubigeo" class="hover:text-gray-400">99</router-link>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-400">Sistemas</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-400">Prestadores</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-400">Inconsistencias</a>
             </li>
           </ul>
         </div>
       </nav>
     </header>
-    <router-view />
-
     <!-- Main content -->
-
-
+    <router-view />
     <!-- Footer -->
     <!-- Footer -->
-    <footer class="bg-blue-100 text-blue-900 py-10">
+    <footer class="bg-blue-100 text-blue-900 py-10 mt-auto">
       <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- About Section -->
         <div class="space-y-4">
