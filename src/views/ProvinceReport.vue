@@ -109,7 +109,7 @@
       <div class="container mx-auto flex flex-col lg:flex-row justify-center items-center w-full gap-8">
         <!-- Mapa -->
         <div class="w-full lg:w-1/2">
-          <div v-if="provinceData!==null||provinceData!==undefined">
+          <div v-if="provinceData">
             <MapProvince
               :percentageType="'ubs'"
               :districts-data="provinceData.ubs_access"

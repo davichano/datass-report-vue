@@ -75,14 +75,13 @@ export default {
           .attr('stroke', 'black')
           .attr('stroke-width', 1)
           .style('cursor', 'pointer')
-          .on('mouseover', function(event, d) {
+          .on('mouseover', function() {
             d3.select(this).attr('stroke-width', 3).attr('stroke', '#1e3a8a')
           })
-          .on('mouseout', function(event, d) {
+          .on('mouseout', function() {
             d3.select(this).attr('stroke-width', 1).attr('stroke', 'black')
           })
 
-        // Añadir los nombres de los distritos y porcentajes de agua o UBS
         svg
           .selectAll('text')
           .data(provinceDistricts)

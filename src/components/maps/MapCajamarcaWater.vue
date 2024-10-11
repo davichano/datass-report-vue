@@ -65,12 +65,12 @@ export default {
             const provinceName = d.properties.NOMBPROV
             router.push({ name: 'provinceReport', params: { provinceName } })  // Navegar a la ruta
           })
-          .on('mouseover', function(event, d) {
+          .on('mouseover', function() {
             d3.select(this)
               .attr('stroke-width', 3)
               .attr('stroke', '#1e3a8a')
           })
-          .on('mouseout', function(event, d) {
+          .on('mouseout', function() {
             d3.select(this)
               .attr('stroke-width', 1)
               .attr('stroke', 'black')
