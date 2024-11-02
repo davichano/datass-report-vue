@@ -5,6 +5,7 @@ import { ref } from 'vue'
 const isLoading = ref(false) // Controlar el estado de carga
 
 const axiosInstance = axios.create({
+  // baseURL: 'https://datassreport-fkbnc3acedfecgd5.canadacentral-01.azurewebsites.net/',
   baseURL: 'http://localhost:8000/',
 })
 
