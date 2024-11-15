@@ -199,7 +199,8 @@ export default {
 
     const fetchHomeResume = async () => {
       try {
-        const response = await axiosInstance.get('reports/api/home_resume')
+        const response = await axiosInstance.get('reports/api/general' +
+          'home_resume')
         resumeData.value = response.data
       } catch (error) {
         console.error('Error fetching home resume:', error)

@@ -25,7 +25,7 @@
             <router-link to="/ubigeo" class="hover:text-gray-400">Ubigeo 99</router-link>
           </li>
           <li>
-            <a href="#" class="hover:text-gray-400">Sistemas</a>
+            <router-link to="/sistemas" class="hover:text-gray-400">Sistemas</router-link>
           </li>
           <li>
             <a href="#" class="hover:text-gray-400">Prestadores</a>
@@ -52,7 +52,7 @@
               <router-link @click="toggleMenu" to="/ubigeo" class="hover:text-gray-400">99</router-link>
             </li>
             <li>
-              <a href="#" class="hover:text-gray-400">Sistemas</a>
+              <router-link to="/sistemas" class="hover:text-gray-400">Sistemas</router-link>
             </li>
             <li>
               <a href="#" class="hover:text-gray-400">Prestadores</a>

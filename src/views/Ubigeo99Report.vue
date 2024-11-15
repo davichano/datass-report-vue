@@ -64,8 +64,10 @@
               <label :for="'accordion-' + cp.id"
                      class="flex justify-between items-center px-4 py-2 cursor-pointer bg-blue-100 dark:bg-gray-600 dark:text-white peer-checked:bg-blue-300 dark:peer-checked:bg-blue-800">
                 <span>{{ cp.name }} - {{ cp.code }}</span>
-                <svg class="h-5 w-5 transform transition-transform peer-checked:rotate-90" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                <svg class="h-5 w-5 transform transition-transform peer-checked:rotate-90" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                 </svg>
               </label>
               <div class="overflow-hidden transition-all duration-300 max-h-0 peer-checked:max-h-screen">
@@ -119,8 +121,9 @@ import useProvinceStore from '@/stores/provinceStore'
 import { computed, onMounted, ref } from 'vue'
 import mapImage from '@/assets/images/ubigeo/map.svg'
 import axiosInstance from '@/axios.js'
-import { haversine, formatNumber } from '@/utils/utils.js'
+import { formatNumber, haversine } from '@/utils/utils.js'
 import MapWithMarkers from '@/components/maps/MapWithMarkers.vue'
+import Swal from 'sweetalert2'
 
 export default {
   components: { MapWithMarkers },
@@ -155,8 +158,17 @@ export default {
       })
       populationCenters.value = data
       const populationCentersWithout99 = data.filter(pc => pc.code.slice(6, 8) !== '99')
-      populationCenters99.value = data
-        .filter(pc => pc.code.slice(6, 8) === '99')
+      const populationCentersWith99 = data.filter(pc => pc.code.slice(6, 8) === '99')
+      if (populationCentersWith99.length === 0) {
+        Swal.fire({
+          title: '¡Vamos bien!',
+          text: 'Este distrito no tiene centros poblados con código 99.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        })
+        return
+      }
+      populationCenters99.value = populationCentersWith99
         .map(pc => {
           const nearest = populationCentersWithout99
             .map(element => ({

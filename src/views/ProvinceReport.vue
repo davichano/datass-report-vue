@@ -258,7 +258,7 @@ export default {
 
     const fetchProvinceResume = async () => {
       try {
-        const response = await axiosInstance.get('reports/api/province_resume', {
+        const response = await axiosInstance.get('reports/api/general/province_resume', {
           params: {
             name: props.provinceName  // Acceder a `provinceName` desde `props`
           }
